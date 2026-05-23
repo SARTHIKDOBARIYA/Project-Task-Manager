@@ -3,6 +3,8 @@ const app=express()
 import cors from 'cors'
 import connectDB from './config/db.js'
 import dotenv from 'dotenv'
+import { userRouter } from "./Routes/index.js";
+
 
 dotenv.config()
 
@@ -16,9 +18,7 @@ connectDB().then(
     console.error(e)
 })
 
-app.get('/',(req,res)=>{
-    res.send('API Working')
-})
+app.use('/v1',userRouter)
 
 app.listen(process.env.PORT,()=>{
     console.log(`=== server running at port ${process.env.PORT} ===>` );
