@@ -1,5 +1,9 @@
-import { userRouter } from "./user.route.js";
+import userRouter  from "./user.route.js";
 
-export {
-    userRouter
-};
+import express from "express";
+
+const router = express.Router();
+
+router.use("/", userRouter);
+
+export default router;

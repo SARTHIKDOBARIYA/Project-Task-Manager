@@ -1,3 +1,3 @@
-const userModel = require('./user.model')
+export { default as User } from "./user.model.js";
 
-export default userModel
+export { default as Task } from "./task.model.js";

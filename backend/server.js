@@ -3,8 +3,7 @@ const app=express()
 import cors from 'cors'
 import connectDB from './config/db.js'
 import dotenv from 'dotenv'
-import { userRouter } from "./Routes/index.js";
-
+import Routes from "./Routes/index.js";
 
 dotenv.config()
 
@@ -18,7 +17,7 @@ connectDB().then(
     console.error(e)
 })
 
-app.use('/v1',userRouter)
+app.use('/v1',Routes)
 
 app.listen(process.env.PORT,()=>{
     console.log(`=== server running at port ${process.env.PORT} ===>` );
