@@ -28,16 +28,13 @@ export async function registerUser(name,email,password){
     if(existUser){
         throw new Error('User already exists')
     }
-    console.log("===========")
-    console.log("password",password)
+
     const bcryptPassword = await bcrypt.hash(password, 10)
-    console.log("=====bcryptPassword",bcryptPassword)
     const user = await createUser({name,email,password:bcryptPassword},{})
     return user
 }
 
 export async function login(email,password){
-    console.log("password",password)
     const existUser = await findOne({email})
 
     const isPasswordMatch = await bcrypt.compare(password, existUser.password)
