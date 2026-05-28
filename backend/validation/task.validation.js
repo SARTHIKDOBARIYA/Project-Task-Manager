@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-export const createTask = Joi.object({
+export const createTask = {
     body:Joi.object({
         title:Joi.string().required(),
         description:Joi.string().required(),
@@ -8,9 +8,9 @@ export const createTask = Joi.object({
         dueDate:Joi.date(),
         completed:Joi.boolean()
     })
-})
+}
 
-export const updateTask = Joi.object({
+export const updateTask = {
     query:Joi.object({
         id:Joi.string().required(),
     }),
@@ -21,16 +21,16 @@ export const updateTask = Joi.object({
         dueDate:Joi.date(),
         completed:Joi.boolean()
     })
-})
+}
 
-export const getTask = Joi.object({
+export const getTask = {
     query: Joi.object({
         id: Joi.string().required(),
     })
-});
+};
 
-export const removeTask = Joi.object({
+export const removeTask = {
     query: Joi.object({
         id: Joi.string().required(),
     })
-});
+};

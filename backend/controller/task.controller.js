@@ -3,13 +3,13 @@ import { status } from "http-status";
 
 export const createTask = async(req,res)=>{
     try{
-        const {title,description,priority,dueDate,Completed} = req.body
+        const {title,description,priority,dueDate,completed} = req.body
         const body = {
             title,
             description,
             priority,
             dueDate,
-            Completed,
+            completed,
             owner:req.user.id
         }
         const result =await taskService.createTask(body)
