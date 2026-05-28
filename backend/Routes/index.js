@@ -5,7 +5,7 @@ import express from "express";
 
 const router = express.Router();
 
-router.use("/", userRouter);
+router.use("/auth", userRouter);
 router.use("/task",taskRouter)
 
 export default router;

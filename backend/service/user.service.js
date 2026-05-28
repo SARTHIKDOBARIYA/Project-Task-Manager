@@ -3,8 +3,7 @@ import bcrypt from 'bcryptjs'
 import {tokenService} from "./index.js";
 
 export async function findOne(query){
-    console.log("Query",query)
-    const user = await User.findOne(query)
+    const user = await User.findOne({query})
     return user
 }
 
@@ -35,7 +34,12 @@ export async function registerUser(name,email,password){
 }
 
 export async function login(email,password){
+    console.log(email)
     const existUser = await findOne({email})
+    console.log(existUser)
+    if(!existUser){
+        throw new Error('User not found')
+    }
 
     const isPasswordMatch = await bcrypt.compare(password, existUser.password)
     if(!isPasswordMatch){

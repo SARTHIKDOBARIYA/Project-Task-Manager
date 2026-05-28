@@ -13,7 +13,7 @@ export const createTask = async(req,res)=>{
             owner:req.user.id
         }
         const result =await taskService.createTask(body)
-        return res.status(status.OK).json({
+        return res.status(status.CREATED).json({
             success:true,
             data:result
         })
@@ -28,7 +28,7 @@ export const createTask = async(req,res)=>{
     }
 }
 
-export const getTasks = async(req,res)=>{
+export const getTaskList = async(req,res)=>{
     try{
         const result = await taskService.getTaskList({},{sort:{createdAt:-1}})
         return res.status(status.OK).json({
@@ -95,6 +95,10 @@ export const updateTask = async(req,res)=>{
 export const removeTask = async(req,res)=>{
     try {
         const result = await taskService.deleteTask({_id:req.params.id,owner:req.user.id})
+        return res.status(status.OK).json({
+            success:true,
+            message: "delete Task"
+        })
     }catch (e){
         console.error(e)
         return res.status(status.INTERNAL_SERVER_ERROR).json({
