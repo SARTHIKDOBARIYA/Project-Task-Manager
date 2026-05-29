@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import { Zap , Settings , ChevronDown } from 'lucide-react';
+import {Zap, Settings, ChevronDown, LogOut} from 'lucide-react';
 import {useRef, useState} from "react";
 
 const Navbar = () =>{
@@ -9,6 +9,11 @@ const Navbar = () =>{
 
     const handleMenuToggle = () =>{
         setMenuOpen(!menuOpen)
+    }
+
+    const handlelogout = () =>{
+        setMenuOpen(false)
+        onLogout()
     }
 
     return (
@@ -69,16 +74,15 @@ const Navbar = () =>{
                                         setMenuOpen(false)
                                         navigate('/profile')
                                     }}
-                                    className="w-full px-4 py-2.5 text-left hover:bg-purple-70 text-sm text-gray-700 transition-colors flex items-center gap-2 group" role="menuItems">
+                                    className="w-full px-4 py-2.5 text-left hover:bg-purple-70 text-sm text-gray-700 transition-colors flex items-center gap-2 group" role="menuitem">
                                         <Settings className="w-4 h-4 text-gray-700">Profile settings</Settings>
                                      </button>
                                 </li>
 
                                 <li className="p-2">
-                                    <button onClick={(hadlelogout)=>{
-
-                                    }}>
-
+                                    <button onClick={handlelogout} className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-red-500 text-red-600 ">
+                                        <LogOut className='w-4 h-4' />
+                                        Logout
                                     </button>
                                 </li>
                             </ul>
