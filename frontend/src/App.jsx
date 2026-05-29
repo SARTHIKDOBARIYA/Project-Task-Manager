@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
-import {Routes, Route,useNavigate} from "react-router-dom";
-import { Outlet} from "lucide-react";
+import {Routes, Route, useNavigate, Outlet} from "react-router-dom";
 import Login from "./components/Login.jsx";
 import Layout from "./components/Layout.jsx";
+import Signup from "./components/Signup.jsx";
 
 function App() {
   const navigate = useNavigate()
@@ -37,7 +37,7 @@ function App() {
     navigate('/login',{replace : true})
   }
 
-  const protectedLayout = () =>{
+  const   protectedLayout = () =>{
     <Layout user={currentUser} onLogout={handlelogout}>
       <Outlet/>
     </Layout>
@@ -52,6 +52,18 @@ function App() {
                 <Login
                     onSubmit={handleAuthSubmit}
                     onSwitchMode={() => navigate("/signup")}
+                />
+              </div>
+            }
+        />
+
+        <Route
+            path="/signup"
+            element={
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <Signup
+                    onSubmit={handleAuthSubmit}
+                    onSwitchMode={() => navigate("/login")}
                 />
               </div>
             }

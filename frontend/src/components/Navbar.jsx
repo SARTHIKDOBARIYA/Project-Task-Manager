@@ -2,7 +2,7 @@ import {useNavigate} from "react-router-dom";
 import {Zap, Settings, ChevronDown, LogOut} from 'lucide-react';
 import {useRef, useState} from "react";
 
-const Navbar = () =>{
+const Navbar = ({user={},onLogout}) =>{
     const menuref = useRef(null)
     const [menuOpen,setMenuOpen]=useState(false);
     const navigate = useNavigate();
@@ -76,7 +76,8 @@ const Navbar = () =>{
                                     }}
                                     className="w-full px-4 py-2.5 text-left hover:bg-purple-70 text-sm text-gray-700 transition-colors flex items-center gap-2 group" role="menuitem">
                                         <Settings className="w-4 h-4 text-gray-700">Profile settings</Settings>
-                                     </button>
+                                        Setting
+                                    </button>
                                 </li>
 
                                 <li className="p-2">

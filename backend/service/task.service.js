@@ -9,14 +9,14 @@ export async function getTaskList(
     projection = {},
     options = {}
 ) {
-    return await Task.find(query, projection, options).lean();
+    return await Task.find(query, projection, options);
 }
 
 export async function getTask(
     query,
     projection = {}
 ) {
-    return await Task.findOne(query, projection).lean();
+    return await Task.findOne(query, projection);
 }
 
 export async function updateTask(query, body) {
@@ -25,11 +25,10 @@ export async function updateTask(query, body) {
         body,
         {
             new: true,
-            runValidators: true
         }
-    ).lean();
+    );
 }
 
 export async function deleteTask(query) {
-    return await Task.findOneAndDelete(query).lean();
+    return await Task.findOneAndDelete(query);
 }
