@@ -138,6 +138,11 @@ export const FIELDS = [
     { name: "password", type: "password", placeholder: "Password", icon: Lock },
 ]
 
+export const LOGIN_FIELDS=[
+    { name: "email", type: "email", placeholder: "Email", icon: Mail },
+    { name: "password", type: "password", placeholder: "Password", icon: Lock },
+]
+
 export const Inputwrapper =
     "flex items-center border border-purple-100 rounded-lg px-3 py-2.5 focus-within:ring-2 focus-within:ring-purple-500 focus-within:border-purple-500 transition-all duration-200"
 export const BUTTONCLASSES =

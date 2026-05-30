@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react'
-import {Routes, Route, useNavigate, Outlet} from "react-router-dom";
+import {Routes, Route, useNavigate, Outlet, Navigate} from "react-router-dom";
 import Login from "./components/Login.jsx";
 import Layout from "./components/Layout.jsx";
 import Signup from "./components/Signup.jsx";
+import Dashboard from './pages/Dashboard.jsx';
 
 function App() {
   const navigate = useNavigate()
@@ -12,7 +13,9 @@ function App() {
     return stored ? JSON.parse(stored) : null
   })
 
+  console.log('=== currentUser ===>', currentUser);
   useEffect(() => {
+    console.log('=== currentUser ===>', currentUser);
     if(currentUser){
       localStorage.setItem("currentUser",JSON.stringify(currentUser))
     }
@@ -21,15 +24,18 @@ function App() {
     }
   },[currentUser])
 
-  const handleAuthSubmit = (data) =>{
+  const handleAuthSubmit = (data) => {
+    console.log("AUTH DATA:", data);
+
     const user = {
-      email : data.email,
-      name : data.name || 'User',
-      avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(data.name || 'User')}&background=random`
-    }
-    setCurrentUser(user)
-    navigate('/',{replace:true})
-  }
+        name: data.name,
+        email: data.email,
+        avatar: data.avatar,
+    };
+
+    setCurrentUser(user);
+    navigate("/", { replace: true });
+};
 
   const handlelogout = () =>{
     localStorage.removeItem("token")
@@ -37,11 +43,13 @@ function App() {
     navigate('/login',{replace : true})
   }
 
-  const   protectedLayout = () =>{
-    <Layout user={currentUser} onLogout={handlelogout}>
-      <Outlet/>
-    </Layout>
-  }
+  const ProtectedLayout = () => {
+    return (
+        <Layout user={currentUser} onLogout={handlelogout}>
+            <Outlet />
+        </Layout>
+    );
+};
 
   return (
       <Routes>
@@ -69,7 +77,14 @@ function App() {
             }
         />
 
-        <Route path="/*" element={<Layout />} />
+          <Route
+            element={
+              currentUser ? <ProtectedLayout /> : <Navigate to="/login" replace />
+            }>
+          <Route path="/" element={<Dashboard />} />
+          </Route>
+
+        <Route path='*' element={<Navigate to={currentUser ? '/' : '/login'} replace/>}/>
       </Routes>
   );
 }

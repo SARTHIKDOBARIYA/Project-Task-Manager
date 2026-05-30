@@ -56,7 +56,7 @@ function Layout({onLogout,user}){
         }
     },[tasks])
 
-    const statCard=({title,value,icon})=>(
+    const StatCard=({title,value,icon})=>(
 
         <div className='p-3 md:p-4 rounded-xl bg-white shadow-sm border border-purple-100 hover:shadow-md transition-all duration-300 min-w-0'>
             <div className='flex items-center gap-2'>
@@ -113,10 +113,10 @@ function Layout({onLogout,user}){
                         </h3>
 
                         <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                            <statCard title="Total Tasks" value={stats.totalCount} icon={<Circle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500"/>}/>
-                            <statCard title="completed Tasks" value={stats.completedTask} icon={<Circle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-500"/>}/> 
-                            <statCard title="Pending Tasks" value={stats.pendingCount} icon={<Circle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-fuchsia-500"/>}/> 
-                            <statCard title="Completion Percentage" value={stats.completionpercentage} icon={<Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500"/>}/>
+                            <StatCard title="Total Tasks" value={stats.totalCount} icon={<Circle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500"/>}/>
+                            <StatCard title="completed Tasks" value={stats.completedTask} icon={<Circle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-500"/>}/> 
+                            <StatCard title="Pending Tasks" value={stats.pendingCount} icon={<Circle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-fuchsia-500"/>}/> 
+                            <StatCard title="Completion Percentage" value={stats.completionpercentage} icon={<Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500"/>}/>
                         </div>
 
                         <hr className="my-3 sm:my-4 border-purple-100"/>
@@ -163,7 +163,7 @@ function Layout({onLogout,user}){
                                     </div>
                                 ))}
 
-                                {task.length === 0 && (
+                                {tasks.length === 0 && (
                                     <div className="text-center py-4 sm:py-6 px-2">
                                         <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto sm:mb-4 rounded-full bg-purple-100 flex items-center justify-center">
                                             <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-purple-500"/>
